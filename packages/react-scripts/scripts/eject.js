@@ -57,9 +57,10 @@ prompt(
     path.join('config', 'webpack.config.prod.js'),
     path.join('config', 'jest', 'cssTransform.js'),
     path.join('config', 'jest', 'fileTransform.js'),
+    path.join('config', 'utils', 'ensureSlash.js'),
     path.join('scripts', 'build.js'),
     path.join('scripts', 'start.js'),
-    path.join('scripts', 'test.js')
+    path.join('scripts', 'test.js'),
   ];
 
   // Ensure that the app folder is clean and we won't override any files
