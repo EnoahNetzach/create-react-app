@@ -15,6 +15,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+var ensureSlash = require('./utils/ensureSlash');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
@@ -23,13 +24,15 @@ var paths = require('./paths');
 var path = require('path');
 // @remove-on-eject-end
 
+var publicPathIsSet = !!process.env.PUBLIC_URL;
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
-var publicPath = '/';
+var publicPath = publicPathIsSet ? ensureSlash(paths.servedPath, true) : '/';
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
-var publicUrl = '';
+var publicUrl = publicPathIsSet ? ensureSlash(paths.servedPath, false) : '';
 // Get environment variables to inject into our app.
 var env = getClientEnvironment(publicUrl);
 
