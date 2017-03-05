@@ -33,6 +33,6 @@ build: off
 test_script:
   - node --version
   - npm --version
-  - 'SKIP=`./tasks/should-skip.sh`'
-  - 'echo $SKIP'
-  - 'if [ $SKIP != 0 ]; then sh tasks/e2e-%test_suite%.sh; fi'
+  - ps: $env:SKIP = `sh ./tasks/should-skip.sh`
+  - ps: echo $env:SKIP
+  - ps: if ($env:SKIP != 0) { sh tasks/e2e-%test_suite%.sh }
