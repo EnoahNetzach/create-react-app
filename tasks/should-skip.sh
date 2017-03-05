@@ -14,6 +14,8 @@ if [ "$APPVEYOR" = "true" ]; then
   commitRange=`node -e "$nodeProgram"`
 fi
 
+echo "commit range: $commitRange"
+
 if [ "$commitRange" = "" ]; then
   echo 1
   exit
