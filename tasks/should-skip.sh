@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-# If not in a Pull Request, then never skip
-if [ "$TRAVIS_PULL_REQUEST_BRANCH" = "" ]; then echo 1; exit; fi
+baseBranch=${TRAVIS_BRANCH}
+currentBranch=${TRAVIS_PULL_REQUEST_BRANCH}
 
-# Skip if only ".md" files have been changed
-git diff --name-only "$TRAVIS_BRANCH".."$TRAVIS_PULL_REQUEST_BRANCH" | sed -E '/\s*.+\.md\s*/d' | wc -l
+# If not in a Pull Request, then never skip
+if [ "$currentBranch" = "" ]; then echo 1; exit; fi
+
+# Get the name list of changed files
+diff=`git diff --name-only "$baseBranch".."$currentBranch"`
+
+# Count non-".md" files have been changed
+echo diff | sed -E '/\s*.+\.md\s*/d' | wc -l
