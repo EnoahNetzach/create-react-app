@@ -10,6 +10,7 @@ cache:
   - packages/react-scripts/node_modules
 install: true
 script:
+ - 'echo $TRAVIS_COMMIT_RANGE'
  - './tasks/should-skip.sh'
  - 'SKIP=`./tasks/should-skip.sh`'
  - 'echo $SKIP'
