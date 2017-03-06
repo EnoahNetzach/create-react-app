@@ -28,3 +28,5 @@ fs.writeFile(pkgFilename, JSON.stringify(data, null, 2), 'utf8', (err) => {
   if (err) throw err;
   console.log('Replaced local dependencies.');
 });
+
+// random change
