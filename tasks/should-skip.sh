@@ -11,7 +11,9 @@ if [ "$APPVEYOR" = "true" ] && [ "$APPVEYOR_PULL_REQUEST_NUMBER" != "" ]; then
   commitRange=`node -e "$nodeProgram"`
 fi
 
-echo "commit range: $commitRange"
+echo "appveyor: \"$APPVEYOR\""
+echo "appveyor pr: \"$APPVEYOR_PULL_REQUEST_NUMBER\""
+echo "commit range: \"$commitRange\""
 
 if [ "$commitRange" = "" ]; then
   echo 1
