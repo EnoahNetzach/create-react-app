@@ -7,13 +7,8 @@ fi
 if [ "$APPVEYOR" != "" ] && [ "$APPVEYOR_PULL_REQUEST_NUMBER" != "" ]; then
   prData=`curl -s https://api.github.com/repos/${APPVEYOR_REPO_NAME}/pulls/${APPVEYOR_PULL_REQUEST_NUMBER}`
   nodeProgram="var prData = $prData;if (prData.base && prData.head) console.log(prData.base.sha + '..' + prData.head.sha);"
-  echo ${nodeProgram}
   commitRange=`node -e "$nodeProgram"`
 fi
-
-echo "appveyor: \"$APPVEYOR\""
-echo "appveyor pr: \"$APPVEYOR_PULL_REQUEST_NUMBER\""
-echo "commit range: \"$commitRange\""
 
 if [ "$commitRange" = "" ]; then
   echo 1
